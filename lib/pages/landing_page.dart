@@ -7,7 +7,13 @@ import 'breed_details_page.dart';
 class LandingPage extends StatelessWidget {
   final String title;
 
-  const LandingPage({super.key, required this.title});
+  final List<BreedDto> breeds;
+
+  const LandingPage({
+    super.key,
+    required this.title,
+    required this.breeds,
+  });
 
   onCatPressed(BuildContext context, BreedDto breed) {
     Navigator.push(
@@ -26,17 +32,17 @@ class LandingPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              BreedOverviewCard(
-                breed: BreedDto.mock,
-                onPressed: () => onCatPressed(context, BreedDto.mock),
-              ),
-              BreedOverviewCard(
-                breed: BreedDto.mock2,
-                onPressed: () => onCatPressed(context, BreedDto.mock2),
-              ),
-            ],
+          child: ListView.builder(
+            itemCount: breeds.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              final breed = BreedDto.mockBreeds[index];
+              return BreedOverviewCard(
+                breed: breed,
+                onPressed: () => onCatPressed(context, breed),
+              );
+            },
           ),
         ),
       ),

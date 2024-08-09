@@ -13,6 +13,8 @@ class BreedDto {
   final int grooming;
   final int strangerFriendly;
 
+  static const mockBreeds = [mock, mock2, mock, mock2, mock, mock2];
+
   const BreedDto({
     required this.id,
     required this.name,
