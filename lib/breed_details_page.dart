@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'breed_dto.dart';
 
-class CatDetailsPage extends StatelessWidget {
+class BreedDetailsPage extends StatelessWidget {
   final BreedDto breed;
 
-  const CatDetailsPage({super.key, required this.breed});
+  const BreedDetailsPage({super.key, required this.breed});
 
   @override
   Widget build(BuildContext context) {

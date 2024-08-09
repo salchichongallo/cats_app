@@ -1,12 +1,12 @@
 import 'package:cats_app/breed_dto.dart';
 import 'package:flutter/material.dart';
 
-class CatOverviewCard extends StatelessWidget {
+class BreedOverviewCard extends StatelessWidget {
   final BreedDto breed;
 
   final VoidCallback onPressed;
 
-  const CatOverviewCard({
+  const BreedOverviewCard({
     super.key,
     required this.breed,
     required this.onPressed,

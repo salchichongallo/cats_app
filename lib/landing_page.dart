@@ -1,8 +1,8 @@
 import 'package:cats_app/breed_dto.dart';
-import 'package:cats_app/widgets/cat_overview_card.dart';
+import 'package:cats_app/widgets/breed_overview_card.dart';
 import 'package:flutter/material.dart';
 
-import 'cat_details_page.dart';
+import 'breed_details_page.dart';
 
 class LandingPage extends StatelessWidget {
   final String title;
@@ -12,7 +12,7 @@ class LandingPage extends StatelessWidget {
   onCatPressed(BuildContext context, BreedDto breed) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => CatDetailsPage(breed: breed)),
+      MaterialPageRoute(builder: (_) => BreedDetailsPage(breed: breed)),
     );
   }
 
@@ -28,11 +28,11 @@ class LandingPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CatOverviewCard(
+              BreedOverviewCard(
                 breed: BreedDto.mock,
                 onPressed: () => onCatPressed(context, BreedDto.mock),
               ),
-              CatOverviewCard(
+              BreedOverviewCard(
                 breed: BreedDto.mock2,
                 onPressed: () => onCatPressed(context, BreedDto.mock2),
               ),
