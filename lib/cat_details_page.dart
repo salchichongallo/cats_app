@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
+import 'breed_dto.dart';
+
 class CatDetailsPage extends StatelessWidget {
-  const CatDetailsPage({super.key});
+  final BreedDto breed;
+
+  const CatDetailsPage({super.key, required this.breed});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Nombre raza'),
+        title: Text(breed.name),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         centerTitle: true,
         leading: IconButton(
@@ -18,9 +22,12 @@ class CatDetailsPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Image.network(
-              'https://cdn2.thecatapi.com/images/tv8tNeYaU.jpg',
-              fit: BoxFit.cover,
+            AspectRatio(
+              aspectRatio: 4 / 3,
+              child: Image.network(
+                breed.imageUrl,
+                fit: BoxFit.cover,
+              ),
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -35,10 +42,9 @@ class CatDetailsPage extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
                       const SizedBox(height: 8),
-                      const Text(
-                        'The Abyssinian is easy to care for, and a joy to have in your home. They’re affectionate cats and love both people and other animals.',
-                      ),
+                      Text(breed.description),
                       const SizedBox(height: 24),
+                      // TODO: Add the rest of the details
                       Text(
                         'Temperament',
                         style: Theme.of(context).textTheme.titleSmall,

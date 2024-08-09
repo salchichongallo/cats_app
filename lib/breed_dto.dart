@@ -4,6 +4,7 @@ class BreedDto {
   final String imageUrl;
   final String origin;
   final int intelligence;
+  final String description;
 
   const BreedDto({
     required this.id,
@@ -11,13 +12,26 @@ class BreedDto {
     required this.imageUrl,
     required this.origin,
     required this.intelligence,
+    required this.description,
   });
 
   static const mock = BreedDto(
-    id: 'asho',
-    name: 'American Shorthair',
-    imageUrl: 'https://cdn2.thecatapi.com/images/JFPROfGtQ.jpg',
+    id: 'abys',
+    name: 'Abyssinian',
+    imageUrl: 'https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg',
+    origin: 'Egypt',
+    intelligence: 5,
+    description:
+        'The Abyssinian is easy to care for, and a joy to have in your home. They’re affectionate cats and love both people and other animals.',
+  );
+
+  static const mock2 = BreedDto(
+    id: 'aege',
+    name: 'Aegean',
+    imageUrl: 'https://cdn2.thecatapi.com/images/ozEvzdVM-.jpg',
     origin: 'Greece',
     intelligence: 3,
+    description:
+        'Native to the Greek islands known as the Cyclades in the Aegean Sea, these are natural cats, meaning they developed without humans getting involved in their breeding. As a breed, Aegean Cats are rare, although they are numerous on their home islands. They are generally friendly toward people and can be excellent cats for families with children.',
   );
 }

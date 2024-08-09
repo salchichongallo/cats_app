@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 class CatOverviewCard extends StatelessWidget {
   final BreedDto breed;
 
-  const CatOverviewCard({super.key, required this.breed});
+  final VoidCallback onPressed;
+
+  const CatOverviewCard({
+    super.key,
+    required this.breed,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +20,7 @@ class CatOverviewCard extends StatelessWidget {
           ListTile(
             title: Text(breed.name),
             trailing: TextButton(
-              onPressed: () {},
+              onPressed: onPressed,
               child: const Text('View'),
             ),
           ),
