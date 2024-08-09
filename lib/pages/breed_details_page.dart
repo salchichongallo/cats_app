@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'breed_dto.dart';
+import '../breed_dto.dart';
 
 class BreedDetailsPage extends StatelessWidget {
   final BreedDto breed;

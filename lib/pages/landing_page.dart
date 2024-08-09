@@ -1,7 +1,7 @@
 import 'package:cats_app/breed_dto.dart';
-import 'package:cats_app/widgets/breed_overview_card.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/breed_overview_card.dart';
 import 'breed_details_page.dart';
 
 class LandingPage extends StatelessWidget {
