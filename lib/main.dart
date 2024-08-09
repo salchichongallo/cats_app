@@ -1,8 +1,8 @@
-import 'package:cats_app/breed_dto.dart';
-import 'package:cats_app/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 
+import 'breed_api.dart';
 import 'pages/landing_page.dart';
+import 'pages/splash_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,9 +22,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: FutureBuilder(
-        future: Future.delayed(const Duration(seconds: 2)).then(
-          (_) => BreedDto.mockBreeds,
-        ),
+        future: BreedApi.fetchBreeds(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return LandingPage(title: _title, breeds: snapshot.data!);

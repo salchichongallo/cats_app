@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../breed_dto.dart';
+import '../widgets/breed_image.dart';
 
 class BreedDetailsPage extends StatelessWidget {
   final BreedDto breed;
@@ -24,10 +25,7 @@ class BreedDetailsPage extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: 4 / 3,
-              child: Image.network(
-                breed.imageUrl,
-                fit: BoxFit.cover,
-              ),
+              child: BreedImage(id: breed.imageUrl),
             ),
             Expanded(
               child: SingleChildScrollView(

@@ -64,4 +64,22 @@ class BreedDto {
     grooming: 3,
     strangerFriendly: 4,
   );
+
+  factory BreedDto.fromJson(Map<String, dynamic> breed) {
+    return BreedDto(
+      id: breed['id'],
+      name: breed['name'],
+      imageUrl: breed['reference_image_id'] ?? 'https://placehold.co/600x400',
+      origin: breed['origin'],
+      intelligence: breed['intelligence'],
+      description: breed['description'],
+      temperament: breed['temperament'],
+      adaptability: breed['adaptability'],
+      lifeSpanInYears: breed['life_span'],
+      childFriendly: breed['child_friendly'],
+      socialNeeds: breed['social_needs'],
+      grooming: breed['grooming'],
+      strangerFriendly: breed['stranger_friendly'],
+    );
+  }
 }

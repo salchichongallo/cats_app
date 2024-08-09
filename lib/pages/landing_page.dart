@@ -37,7 +37,7 @@ class LandingPage extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              final breed = BreedDto.mockBreeds[index];
+              final breed = breeds[index];
               return BreedOverviewCard(
                 breed: breed,
                 onPressed: () => onCatPressed(context, breed),

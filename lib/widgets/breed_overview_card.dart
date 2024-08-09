@@ -1,6 +1,8 @@
 import 'package:cats_app/breed_dto.dart';
 import 'package:flutter/material.dart';
 
+import 'breed_image.dart';
+
 class BreedOverviewCard extends StatelessWidget {
   final BreedDto breed;
 
@@ -26,10 +28,7 @@ class BreedOverviewCard extends StatelessWidget {
           ),
           AspectRatio(
             aspectRatio: 4 / 3,
-            child: Image.network(
-              breed.imageUrl,
-              fit: BoxFit.cover,
-            ),
+            child: BreedImage(id: breed.imageUrl),
           ),
           Padding(
             padding: const EdgeInsets.only(
