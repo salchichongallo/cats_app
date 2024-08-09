@@ -1,4 +1,5 @@
 import 'package:cats_app/breed_dto.dart';
+import 'package:cats_app/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/landing_page.dart';
@@ -17,10 +18,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: _title,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pinkAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurpleAccent),
         useMaterial3: true,
       ),
-      // home: FutureBuilder(child: const LandingPage(title: _title)),
       home: FutureBuilder(
         future: Future.delayed(const Duration(seconds: 2)).then(
           (_) => BreedDto.mockBreeds,
@@ -29,9 +29,7 @@ class MyApp extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             return LandingPage(title: _title, breeds: snapshot.data!);
           }
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          );
+          return const SplashPage(title: _title);
         },
       ),
     );
