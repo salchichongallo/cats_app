@@ -44,32 +44,47 @@ class BreedDetailsPage extends StatelessWidget {
                       const SizedBox(height: 8),
                       Text(breed.description),
                       const SizedBox(height: 24),
-                      // TODO: Add the rest of the details
                       Text(
                         'Temperament',
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
                       const SizedBox(height: 8),
-                      const Text(
-                        'Active, Energetic, Independent, Intelligent, Gentle',
-                      ),
+                      Text(breed.temperament),
                       const SizedBox(height: 24),
                       Text(
                         'Other Features',
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
                       const SizedBox(height: 8),
-                      const Wrap(
+                      Wrap(
                         spacing: 8,
                         children: [
-                          Chip(label: Text('Origin: Egypt')),
-                          Chip(label: Text('Intelligence: 5')),
-                          Chip(label: Text('Adaptability: 5')),
-                          Chip(label: Text('Life Span: 14-15 years')),
-                          Chip(label: Text('Child Friendly: 4')),
-                          Chip(label: Text('Social Needs: 0')),
-                          Chip(label: Text('Grooming: 3')),
-                          Chip(label: Text('Stranger Friendly: 3')),
+                          Chip(label: Text('Origin: ${breed.origin}')),
+                          Chip(
+                            label: Text('Intelligence: ${breed.intelligence}'),
+                          ),
+                          Chip(
+                            label: Text('Adaptability: ${breed.adaptability}'),
+                          ),
+                          Chip(
+                            label: Text(
+                              'Life Span: ${breed.lifeSpanInYears} years',
+                            ),
+                          ),
+                          Chip(
+                            label:
+                                Text('Child Friendly: ${breed.childFriendly}'),
+                          ),
+                          Chip(
+                            label: Text('Social Needs: ${breed.socialNeeds}'),
+                          ),
+                          Chip(
+                            label: Text('Grooming: ${breed.grooming}'),
+                          ),
+                          Chip(
+                            label: Text(
+                                'Stranger Friendly: ${breed.strangerFriendly}'),
+                          ),
                         ],
                       ),
                     ],
