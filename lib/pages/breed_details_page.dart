@@ -25,7 +25,7 @@ class BreedDetailsPage extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: 4 / 3,
-              child: BreedImage(id: breed.imageUrl),
+              child: BreedImage(id: breed.imageId),
             ),
             Expanded(
               child: SingleChildScrollView(

@@ -28,7 +28,7 @@ class BreedOverviewCard extends StatelessWidget {
           ),
           AspectRatio(
             aspectRatio: 4 / 3,
-            child: BreedImage(id: breed.imageUrl),
+            child: BreedImage(id: breed.imageId),
           ),
           Padding(
             padding: const EdgeInsets.only(

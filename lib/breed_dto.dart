@@ -1,7 +1,7 @@
 class BreedDto {
   final String id;
   final String name;
-  final String imageUrl;
+  final String? imageId;
   final String origin;
   final int intelligence;
   final String description;
@@ -13,12 +13,10 @@ class BreedDto {
   final int grooming;
   final int strangerFriendly;
 
-  static const mockBreeds = [mock, mock2, mock, mock2, mock, mock2];
-
   const BreedDto({
     required this.id,
     required this.name,
-    required this.imageUrl,
+    required this.imageId,
     required this.origin,
     required this.intelligence,
     required this.description,
@@ -31,45 +29,11 @@ class BreedDto {
     required this.strangerFriendly,
   });
 
-  static const mock = BreedDto(
-    id: 'abys',
-    name: 'Abyssinian',
-    imageUrl: 'https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg',
-    origin: 'Egypt',
-    intelligence: 5,
-    description:
-        'The Abyssinian is easy to care for, and a joy to have in your home. They’re affectionate cats and love both people and other animals.',
-    temperament: 'Active, Energetic, Independent, Intelligent, Gentle',
-    adaptability: 3,
-    lifeSpanInYears: '12-15',
-    childFriendly: 4,
-    socialNeeds: 5,
-    grooming: 1,
-    strangerFriendly: 3,
-  );
-
-  static const mock2 = BreedDto(
-    id: 'aege',
-    name: 'Aegean',
-    imageUrl: 'https://cdn2.thecatapi.com/images/ozEvzdVM-.jpg',
-    origin: 'Greece',
-    intelligence: 3,
-    description:
-        'Native to the Greek islands known as the Cyclades in the Aegean Sea, these are natural cats, meaning they developed without humans getting involved in their breeding. As a breed, Aegean Cats are rare, although they are numerous on their home islands. They are generally friendly toward people and can be excellent cats for families with children.',
-    temperament: 'Affectionate, Social, Intelligent, Playful, Active',
-    adaptability: 5,
-    lifeSpanInYears: '9-12',
-    childFriendly: 4,
-    socialNeeds: 4,
-    grooming: 3,
-    strangerFriendly: 4,
-  );
-
   factory BreedDto.fromJson(Map<String, dynamic> breed) {
     return BreedDto(
       id: breed['id'],
       name: breed['name'],
-      imageUrl: breed['reference_image_id'] ?? 'https://placehold.co/600x400',
+      imageId: breed['reference_image_id'],
       origin: breed['origin'],
       intelligence: breed['intelligence'],
       description: breed['description'],
