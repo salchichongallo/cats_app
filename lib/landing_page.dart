@@ -1,3 +1,4 @@
+import 'package:cats_app/breed_dto.dart';
 import 'package:cats_app/widgets/cat_overview_card.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class LandingPage extends StatelessWidget {
       body: const SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            children: [CatOverviewCard()],
+            children: [CatOverviewCard(breed: BreedDto.mock)],
           ),
         ),
       ),
