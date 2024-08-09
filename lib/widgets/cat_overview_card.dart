@@ -10,7 +10,7 @@ class CatOverviewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Column(
-        children: <Widget>[
+        children: [
           ListTile(
             title: Text(breed.name),
             trailing: TextButton(
@@ -18,9 +18,12 @@ class CatOverviewCard extends StatelessWidget {
               child: const Text('View'),
             ),
           ),
-          Image.network(
-            breed.imageUrl,
-            fit: BoxFit.cover,
+          AspectRatio(
+            aspectRatio: 4 / 3,
+            child: Image.network(
+              breed.imageUrl,
+              fit: BoxFit.cover,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(
