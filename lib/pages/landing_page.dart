@@ -20,23 +20,19 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  String searchValue = '';
+  String _searchedBreed = '';
 
-  List<BreedDto> filtereBreeds = [];
+  List<BreedDto> _filteredBreeds = [];
 
-  onCatPressed(BuildContext context, BreedDto breed) {
+  _onCatPressed(BreedDto breed) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (_) => BreedDetailsPage(breed: breed)),
     );
   }
 
-  List<BreedDto> get _breeds {
-    if (searchValue.isEmpty) {
-      return widget.breeds;
-    }
-    return filtereBreeds;
-  }
+  List<BreedDto> get _breeds =>
+      _searchedBreed.isEmpty ? widget.breeds : _filteredBreeds;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +58,7 @@ class _LandingPageState extends State<LandingPage> {
                   final breed = widget.breeds[index];
                   return BreedOverviewCard(
                     breed: breed,
-                    onPressed: () => onCatPressed(context, breed),
+                    onPressed: () => _onCatPressed(breed),
                   );
                 },
               )
@@ -73,23 +69,26 @@ class _LandingPageState extends State<LandingPage> {
     );
   }
 
-  void _onSearch(String value) {
-    setState(() {
-      searchValue = value;
-      filtereBreeds = widget.breeds
-          .where((breed) => breed.name.toLowerCase().contains(value))
-          .toList();
-    });
-  }
-
   Widget _buildSearchBar() {
     return SearchBar(
       hintText: 'Search breeds',
       onChanged: _onSearch,
+      focusNode: null,
       leading: const Padding(
         padding: EdgeInsets.all(4),
         child: Icon(Icons.search),
       ),
     );
   }
+
+  void _onSearch(String breedName) {
+    setState(() {
+      _searchedBreed = breedName;
+      _filteredBreeds = _filterBreeds(_searchedBreed);
+    });
+  }
+
+  List<BreedDto> _filterBreeds(String name) => widget.breeds
+      .where((breed) => breed.name.toLowerCase().contains(name))
+      .toList();
 }

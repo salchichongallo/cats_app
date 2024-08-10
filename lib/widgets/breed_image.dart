@@ -10,12 +10,9 @@ class BreedImage extends StatelessWidget {
 
   const BreedImage({super.key, required this.id});
 
-  Future<String> _fetchImage() async {
-    if (id == null) {
-      return _fallbackImageUrl;
-    }
-    return BreedApi.fetchImage(id!).then((value) => value ?? _fallbackImageUrl);
-  }
+  Future<String> _fetchImage() async => id == null
+      ? _fallbackImageUrl
+      : await BreedApi.fetchImage(id!, fallback: _fallbackImageUrl);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +27,11 @@ class BreedImage extends StatelessWidget {
         if (snapshot.hasError) {
           return const Center(child: Icon(Icons.error));
         }
-        return Image.network(snapshot.data as String, fit: BoxFit.cover);
+        return Image.network(
+          snapshot.data as String,
+          fit: BoxFit.cover,
+          errorBuilder: (_, __, ___) => const Icon(Icons.error),
+        );
       },
     );
   }

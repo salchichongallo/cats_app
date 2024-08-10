@@ -22,10 +22,13 @@ class BreedApi {
     return rawBreeds.map((rawBreed) => BreedDto.fromJson(rawBreed)).toList();
   }
 
-  static Future<String?> fetchImage(String imageId) async {
+  static Future<String> fetchImage(
+    String imageId, {
+    required String fallback,
+  }) async {
     final imageUri = Uri.https(_baseUrl, '/v1/images/$imageId');
     final response = await http.get(imageUri, headers: _headers);
     final Map<String, dynamic> rawImage = jsonDecode(response.body);
-    return rawImage['url'];
+    return rawImage['url'] ?? fallback;
   }
 }
