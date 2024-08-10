@@ -1,3 +1,4 @@
+import 'package:cats_app/widgets/empty_state.dart';
 import 'package:flutter/material.dart';
 
 import '../breed_dto.dart';
@@ -50,18 +51,7 @@ class _LandingPageState extends State<LandingPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: _buildSearchBar(),
               ),
-              ListView.builder(
-                itemCount: _breeds.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  final breed = widget.breeds[index];
-                  return BreedOverviewCard(
-                    breed: breed,
-                    onPressed: () => _onCatPressed(breed),
-                  );
-                },
-              )
+              _buildBreedList(),
             ],
           ),
         ),
@@ -91,4 +81,29 @@ class _LandingPageState extends State<LandingPage> {
   List<BreedDto> _filterBreeds(String name) => widget.breeds
       .where((breed) => breed.name.toLowerCase().contains(name))
       .toList();
+
+  Widget _buildBreedList() {
+    if (_breeds.isEmpty) {
+      return const Padding(
+        padding: EdgeInsets.only(top: 64),
+        child: EmptyState(
+          title: 'Breeds not found',
+          child: Text('Try another breed name.'),
+        ),
+      );
+    }
+
+    return ListView.builder(
+      itemCount: _breeds.length,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemBuilder: (context, index) {
+        final breed = widget.breeds[index];
+        return BreedOverviewCard(
+          breed: breed,
+          onPressed: () => _onCatPressed(breed),
+        );
+      },
+    );
+  }
 }

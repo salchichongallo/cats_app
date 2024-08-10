@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/empty_state.dart';
+
 class SplashPage extends StatelessWidget {
   final String title;
 
@@ -9,21 +11,9 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'images/cat.png',
-                width: 128,
-                height: 128,
-              ),
-              const SizedBox(height: 16),
-              Text(title, style: Theme.of(context).textTheme.titleMedium),
-              const SizedBox(height: 24),
-              const CircularProgressIndicator.adaptive(),
-            ],
-          ),
+        child: EmptyState(
+          title: title,
+          child: const CircularProgressIndicator.adaptive(),
         ),
       ),
     );
