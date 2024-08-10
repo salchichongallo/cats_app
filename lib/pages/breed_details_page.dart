@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../breed_dto.dart';
+import '../widgets/breed_features.dart';
 import '../widgets/breed_image.dart';
+import '../widgets/breed_section.dart';
 
 class BreedDetailsPage extends StatelessWidget {
   final BreedDto breed;
@@ -31,68 +33,28 @@ class BreedDetailsPage extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.all(16),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Description',
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(breed.description),
-                      const SizedBox(height: 24),
-                      Text(
-                        'Temperament',
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(breed.temperament),
-                      const SizedBox(height: 24),
-                      Text(
-                        'Other Features',
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                      const SizedBox(height: 8),
-                      Wrap(
-                        spacing: 8,
-                        children: [
-                          Chip(label: Text('Origin: ${breed.origin}')),
-                          Chip(
-                            label: Text('Intelligence: ${breed.intelligence}'),
-                          ),
-                          Chip(
-                            label: Text('Adaptability: ${breed.adaptability}'),
-                          ),
-                          Chip(
-                            label: Text(
-                              'Life Span: ${breed.lifeSpanInYears} years',
-                            ),
-                          ),
-                          Chip(
-                            label:
-                                Text('Child Friendly: ${breed.childFriendly}'),
-                          ),
-                          Chip(
-                            label: Text('Social Needs: ${breed.socialNeeds}'),
-                          ),
-                          Chip(
-                            label: Text('Grooming: ${breed.grooming}'),
-                          ),
-                          Chip(
-                            label: Text(
-                                'Stranger Friendly: ${breed.strangerFriendly}'),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                  child: _buildBreedInfo(),
                 ),
               ),
             )
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildBreedInfo() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        BreedSection(title: 'Description', child: Text(breed.description)),
+        BreedSection(title: 'Temperament', child: Text(breed.temperament)),
+        BreedSection(
+          title: 'Other Features',
+          child: BreedFeatures(breed: breed),
+        ),
+      ],
     );
   }
 }
