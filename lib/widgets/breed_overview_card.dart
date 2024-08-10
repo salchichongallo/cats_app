@@ -1,6 +1,6 @@
-import 'package:cats_app/breed_dto.dart';
 import 'package:flutter/material.dart';
 
+import '../breed_dto.dart';
 import 'breed_image.dart';
 
 class BreedOverviewCard extends StatelessWidget {

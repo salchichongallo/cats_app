@@ -1,5 +1,6 @@
-import 'package:cats_app/breed_api.dart';
 import 'package:flutter/material.dart';
+
+import '../breed_api.dart';
 
 class BreedImage extends StatelessWidget {
   final String? id;
