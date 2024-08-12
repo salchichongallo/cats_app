@@ -78,6 +78,8 @@ class _LandingPageState extends State<LandingPage> {
     setState(() {
       if (_searchController.text.isNotEmpty) {
         _filteredBreeds = _filterBreeds(_searchController.text);
+      } else {
+        _filteredBreeds = widget.breeds;
       }
     });
   }
