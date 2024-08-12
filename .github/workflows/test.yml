@@ -15,4 +15,5 @@ jobs:
           channel: stable
           cache: true
       - run: flutter pub get
-      - run: flutter test -r expanded
+      - run: flutter test test/unit -r expanded
+      - run: flutter test test/widget -r expanded

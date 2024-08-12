@@ -5,7 +5,7 @@ import 'package:cats_app/widgets/breed_overview_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'breed_fixture.dart';
+import '../breed_fixture.dart';
 
 Widget buildBreedCard({
   BreedDto? breed,
