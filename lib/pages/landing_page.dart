@@ -71,6 +71,14 @@ class _LandingPageState extends State<LandingPage> {
         padding: EdgeInsets.all(4),
         child: Icon(Icons.search),
       ),
+      trailing: [
+        if (_searchController.text.isNotEmpty)
+          IconButton(
+            icon: const Icon(Icons.clear),
+            onPressed: _searchController.clear,
+            tooltip: 'Clear search',
+          ),
+      ],
     );
   }
 
