@@ -1,8 +1,7 @@
-import 'package:cats_app/widgets/empty_state.dart';
 import 'package:flutter/material.dart';
 
 import '../breed_dto.dart';
-import '../widgets/breed_overview_card.dart';
+import '../widgets/breed_card_list.dart';
 import 'breed_details_page.dart';
 
 class LandingPage extends StatefulWidget {
@@ -21,7 +20,7 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  String _searchedBreed = '';
+  final TextEditingController _searchController = TextEditingController();
 
   List<BreedDto> _filteredBreeds = [];
 
@@ -32,8 +31,12 @@ class _LandingPageState extends State<LandingPage> {
     );
   }
 
-  List<BreedDto> get _breeds =>
-      _searchedBreed.isEmpty ? widget.breeds : _filteredBreeds;
+  @override
+  void initState() {
+    _filteredBreeds = widget.breeds;
+    _searchController.addListener(_onSearch);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +54,7 @@ class _LandingPageState extends State<LandingPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: _buildSearchBar(),
               ),
-              _buildBreedList(),
+              BreedCardList(breeds: _filteredBreeds, onPressed: _onCatPressed),
             ],
           ),
         ),
@@ -62,8 +65,8 @@ class _LandingPageState extends State<LandingPage> {
   Widget _buildSearchBar() {
     return SearchBar(
       hintText: 'Search breeds',
-      onChanged: _onSearch,
       focusNode: null,
+      controller: _searchController,
       leading: const Padding(
         padding: EdgeInsets.all(4),
         child: Icon(Icons.search),
@@ -71,39 +74,21 @@ class _LandingPageState extends State<LandingPage> {
     );
   }
 
-  void _onSearch(String breedName) {
+  void _onSearch() {
     setState(() {
-      _searchedBreed = breedName;
-      _filteredBreeds = _filterBreeds(_searchedBreed);
+      if (_searchController.text.isNotEmpty) {
+        _filteredBreeds = _filterBreeds(_searchController.text);
+      }
     });
   }
 
   List<BreedDto> _filterBreeds(String name) => widget.breeds
-      .where((breed) => breed.name.toLowerCase().contains(name))
+      .where((breed) => breed.name.toLowerCase().contains(name.toLowerCase()))
       .toList();
 
-  Widget _buildBreedList() {
-    if (_breeds.isEmpty) {
-      return const Padding(
-        padding: EdgeInsets.only(top: 64),
-        child: EmptyState(
-          title: 'Breeds not found',
-          child: Text('Try another breed name.'),
-        ),
-      );
-    }
-
-    return ListView.builder(
-      itemCount: _breeds.length,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) {
-        final breed = widget.breeds[index];
-        return BreedOverviewCard(
-          breed: breed,
-          onPressed: () => _onCatPressed(breed),
-        );
-      },
-    );
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 }
