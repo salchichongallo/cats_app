@@ -24,6 +24,14 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins',
       ),
+      darkTheme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurpleAccent,
+          brightness: Brightness.dark,
+        ),
+        useMaterial3: true,
+        fontFamily: 'Poppins',
+      ),
       home: FutureBuilder(
         future: BreedApi.instance.fetchBreeds(),
         builder: (context, snapshot) {
