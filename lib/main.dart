@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurpleAccent),
         useMaterial3: true,
+        fontFamily: 'Poppins',
       ),
       home: FutureBuilder(
         future: BreedApi.instance.fetchBreeds(),
