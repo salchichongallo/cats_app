@@ -12,7 +12,7 @@ class BreedImage extends StatelessWidget {
 
   Future<String> _fetchImage() async => id == null
       ? _fallbackImageUrl
-      : await BreedApi.fetchImage(id!, fallback: _fallbackImageUrl);
+      : await BreedApi.instance.fetchImage(id!, fallback: _fallbackImageUrl);
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import 'breed_api.dart';
 import 'pages/landing_page.dart';
 import 'pages/splash_page.dart';
 
 void main() {
+  BreedApi.instance = BreedApi(client: http.Client(), apiKey: '');
   runApp(const MyApp());
 }
 
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: FutureBuilder(
-        future: BreedApi.fetchBreeds(),
+        future: BreedApi.instance.fetchBreeds(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return LandingPage(title: _title, breeds: snapshot.data!);
