@@ -18,6 +18,7 @@ class BreedOverviewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           ListTile(
             title: Text(breed.name),
@@ -26,9 +27,12 @@ class BreedOverviewCard extends StatelessWidget {
               child: const Text('View'),
             ),
           ),
-          AspectRatio(
-            aspectRatio: 4 / 3,
-            child: BreedImage(id: breed.imageId),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 296),
+            child: AspectRatio(
+              aspectRatio: 4 / 3,
+              child: BreedImage(id: breed.imageId),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(
